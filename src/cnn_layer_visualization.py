@@ -29,7 +29,8 @@ class CNNLayerVisualization():
             os.makedirs('../generated')
 
     def hook_layer(self):
-        def hook_function(module, grad_in, grad_out):
+        #def hook_function(module, grad_in, grad_out):
+        def hook_function(module, input, output):
             # Gets the conv output of the selected filter (from selected layer)
             self.conv_output = grad_out[0, self.selected_filter]
         # Hook the selected layer
