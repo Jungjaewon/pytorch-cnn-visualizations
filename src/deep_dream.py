@@ -33,9 +33,10 @@ class DeepDream():
             os.makedirs('../generated')
 
     def hook_layer(self):
-        def hook_function(module, grad_in, grad_out):
+        #def hook_function(module, grad_in, grad_out):
+        def hook_function(module, intput, output):
             # Gets the conv output of the selected filter (from selected layer)
-            self.conv_output = grad_out[0, self.selected_filter]
+            self.conv_output = output[0, self.selected_filter]
 
         # Hook the selected layer
         self.model[self.selected_layer].register_forward_hook(hook_function)
